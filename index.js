@@ -36,7 +36,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
 
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
-  
+
 
 */
 
@@ -68,7 +68,7 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning(number){
-  let score = math.round(math.random(2));
+  let score = Math.round(Math.random(2));
 }
 
 
@@ -155,31 +155,27 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
- function scoreboard(getInningScore, inning, numInnings) {
-  let scoreboard = [];
-  let awayTotal = 0;
-  let homeTotal = 0;
+ function scoreboard(getInningScoreCallBack,inningCallBack, number) {
+  /* CODE HERE */
+  let homeScore = 0;
+  let awayScore = 0;
+  const totalGame =[];
 
-  for(let i = 0; i < numInnings; i++) {
-    let curScore = getInningScore(inning);
-    awayTotal = awayTotal + curScore.Away;
-    homeTotal = homeTotal + curScore.Home;
-
-    let score = `Inning ${i + 1}: Away ${curScore.Away} - Home ${curScore.Home}`;
-    scoreboard.push(score);
+  for(let i = 0; i< number; i++){
+    const currentScore = getInningScoreCallBack(inningCallBack);
+    homeScore = homeScore+ currentScore.Home;
+    awayScore = awayScore + currentScore.Away;
+    totalGame.push(`Inning ${i+1}: Away ${currentScore.Away} - Home ${currentScore.Home}`);
   }
-
-  let finalScore = `Final Score: Away ${awayTotal} - Home ${homeTotal}`;
-  if(awayTotal == homeTotal) {
-    finalScore = `This game will require extra innings: Away ${awayTotal} - Home ${homeTotal}`;
+  if (homeScore == awayScore){
+    totalGame.push(`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`)
+  }else{
+    totalGame.push(`Final Score: Away ${awayScore} - Home ${homeScore}`)
   }
-  scoreboard.push(finalScore);
-
-  return scoreboard;
+  return totalGame;
 }
 
 console.log(scoreboard(getInningScore, inning, 9));
-
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
